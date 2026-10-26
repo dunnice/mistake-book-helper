@@ -1,0 +1,777 @@
+/* 错题本专用扩展样式，无缝融入 teamwork 设计体系 */
+
+/* 顶部工作台统计条 */
+.stat-banner {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.stat-card {
+  background: var(--surface-solid);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  padding: 16px 20px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.stat-card-title {
+  font-size: var(--font-size-sm);
+  color: var(--muted);
+  font-weight: var(--font-weight-medium);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.stat-card-value {
+  font-size: 26px;
+  font-weight: var(--font-weight-bold);
+  color: var(--text);
+  line-height: var(--line-tight);
+}
+
+/* 错题列表与过滤器 */
+.filter-bar {
+  background: var(--surface);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-panel);
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: var(--shadow-sm);
+}
+
+.filter-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.filter-label {
+  font-size: var(--font-size-sm);
+  color: var(--muted);
+  font-weight: var(--font-weight-semibold);
+  min-width: 48px;
+}
+
+.chip-list {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.chip-item {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: var(--font-size-sm);
+  background: var(--surface-muted);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.18s ease;
+}
+
+.chip-item:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: var(--primary-soft);
+}
+
+.chip-item.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #ffffff;
+  font-weight: var(--font-weight-medium);
+  box-shadow: 0 2px 8px var(--primary-ring);
+}
+
+/* ==========================================================================
+   Teamwork 视觉体系对齐：按钮体系规范 (Buttons System)
+   比对 /teamwork/teamwork-front-view/src/styles/global.css
+   ========================================================================== */
+
+/* 核心通用按钮基类 */
+.ghost-button,
+.primary-button,
+.success-button,
+.danger-button,
+.secondary-button,
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 36px;
+  min-height: 36px;
+  padding: 0 14px;
+  border-radius: var(--radius-md, 10px);
+  font-family: inherit;
+  font-size: var(--font-size-md, 13px);
+  font-weight: var(--font-weight-medium, 500);
+  line-height: 1;
+  white-space: nowrap;
+  user-select: none;
+  cursor: pointer;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  box-shadow: 0 8px 22px rgba(51, 65, 85, 0.08);
+  text-decoration: none;
+  box-sizing: border-box;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease, transform 0.08s ease;
+}
+
+/* 1. 主按钮 (Primary Button) */
+.primary-button,
+.button-primary {
+  border-color: #2563eb;
+  color: #ffffff !important;
+  background: #2563eb;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.28);
+}
+
+.primary-button:hover:not(:disabled),
+.button-primary:hover:not(:disabled) {
+  background: #1d4ed8;
+  border-color: #1d4ed8;
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.35);
+}
+
+.primary-button:active:not(:disabled),
+.button-primary:active:not(:disabled) {
+  background: #1e40af;
+  border-color: #1e40af;
+  transform: translateY(1px);
+}
+
+/* 2. 幽灵/次要按钮 (Ghost / Secondary Button) */
+.ghost-button,
+.secondary-button,
+.button-secondary,
+.button-ghost {
+  border-color: rgba(148, 163, 184, 0.28);
+  background: rgba(255, 255, 255, 0.85);
+  color: #334155 !important;
+  box-shadow: 0 8px 22px rgba(51, 65, 85, 0.08);
+}
+
+.ghost-button:hover:not(:disabled),
+.secondary-button:hover:not(:disabled),
+.button-secondary:hover:not(:disabled),
+.button-ghost:hover:not(:disabled) {
+  border-color: #cbd5e1;
+  background: #f8fafc;
+  color: #0f172a !important;
+  box-shadow: 0 8px 22px rgba(51, 65, 85, 0.12);
+}
+
+.ghost-button:active:not(:disabled),
+.secondary-button:active:not(:disabled),
+.button-secondary:active:not(:disabled),
+.button-ghost:active:not(:disabled) {
+  background: #f1f5f9;
+  transform: translateY(1px);
+}
+
+/* 3. 成功按钮 (Success Button - 翡翠绿) */
+.success-button,
+.button-success {
+  border-color: #16a34a;
+  color: #ffffff !important;
+  background: #16a34a;
+  box-shadow: 0 8px 22px rgba(22, 163, 74, 0.22);
+}
+
+.success-button:hover:not(:disabled),
+.button-success:hover:not(:disabled) {
+  background: #15803d;
+  border-color: #15803d;
+  box-shadow: 0 10px 24px rgba(22, 163, 74, 0.3);
+}
+
+.success-button:active:not(:disabled),
+.button-success:active:not(:disabled) {
+  background: #166534;
+  border-color: #166534;
+  transform: translateY(1px);
+}
+
+/* 4. 危险/删除按钮 (Danger Button - 柔和红底深红字) */
+.danger-button,
+.button-danger {
+  border-color: #fecaca;
+  color: #b91c1c !important;
+  background: #fef2f2;
+  box-shadow: 0 2px 8px rgba(185, 28, 28, 0.08);
+}
+
+.danger-button:hover:not(:disabled),
+.button-danger:hover:not(:disabled) {
+  border-color: #fca5a5;
+  background: #fee2e2;
+  color: #991b1b !important;
+  box-shadow: 0 4px 12px rgba(185, 28, 28, 0.15);
+}
+
+.danger-button:active:not(:disabled),
+.button-danger:active:not(:disabled) {
+  background: #fecaca;
+  transform: translateY(1px);
+}
+
+/* 5. 紧凑按钮 (Compact Button) */
+.compact-button {
+  height: 28px !important;
+  min-height: 28px !important;
+  padding: 0 10px !important;
+  font-size: var(--font-size-sm, 12px) !important;
+  border-radius: var(--radius-sm, 8px) !important;
+  gap: 4px !important;
+}
+
+/* 6. 图标按钮 (Icon Button) - 比对 teamwork 559-566 行 */
+.icon-button {
+  display: inline-grid !important;
+  place-items: center !important;
+  width: 34px !important;
+  height: 34px !important;
+  min-height: 34px !important;
+  padding: 0 !important;
+  border-radius: var(--radius-md, 10px) !important;
+  border: 1px solid rgba(148, 163, 184, 0.28) !important;
+  color: #2563eb !important;
+  background: #eff6ff !important;
+  cursor: pointer !important;
+  box-shadow: none !important;
+  transition: all 0.15s ease !important;
+}
+
+.icon-button:hover:not(:disabled) {
+  color: #1d4ed8 !important;
+  background: #dbeafe !important;
+  border-color: #93c5fd !important;
+}
+
+.icon-button:active:not(:disabled) {
+  transform: scale(0.96);
+}
+
+.icon-button.icon-danger {
+  color: var(--danger, #dc2626) !important;
+  background: var(--danger-soft, #fef2f2) !important;
+  border-color: #fecaca !important;
+}
+
+.icon-button.icon-danger:hover:not(:disabled) {
+  background: #fee2e2 !important;
+  border-color: #fca5a5 !important;
+}
+
+/* 禁用态规范 */
+.primary-button:disabled,
+.ghost-button:disabled,
+.success-button:disabled,
+.danger-button:disabled,
+.secondary-button:disabled,
+.icon-button:disabled,
+.button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+/* ==========================================================================
+   Teamwork 视觉体系对齐：输入控件规范 (Inputs, Textarea & Select)
+   比对 /teamwork/teamwork-front-view 5345-5385 / 5693-5728 行
+   ========================================================================== */
+
+/* 全局输入框、选择框与多行文本统一基底 */
+input:not([type="checkbox"]):not([type="radio"]):not([type="file"]),
+textarea,
+select {
+  border: 1px solid var(--border, #e2e8f0);
+  border-radius: var(--radius-md, 10px);
+  color: var(--text, #172033);
+  background: var(--surface-solid, #ffffff);
+  font-family: inherit;
+  font-size: var(--font-size-md, 13px);
+  line-height: var(--line-normal, 1.45);
+  box-sizing: border-box;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+/* 单行输入框与选择框高度与内边距 */
+input:not([type="checkbox"]):not([type="radio"]):not([type="file"]),
+select {
+  height: 36px;
+  min-height: 36px;
+  padding: 0 12px;
+}
+
+/* 多行文本区域 */
+textarea {
+  padding: 8px 12px;
+  line-height: 1.5;
+}
+
+/* 悬停与聚焦 */
+input:not([type="checkbox"]):not([type="radio"]):not([type="file"]):hover:not(:disabled),
+textarea:hover:not(:disabled),
+select:hover:not(:disabled) {
+  border-color: var(--border-strong, #cbd5e1);
+}
+
+input:not([type="checkbox"]):not([type="radio"]):not([type="file"]):focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: rgba(37, 99, 235, 0.46);
+  box-shadow: 0 0 0 3px var(--primary-ring, rgba(37, 99, 235, 0.16));
+  background: var(--surface-solid, #ffffff);
+}
+
+/* 占位符颜色 */
+input::placeholder,
+textarea::placeholder {
+  color: var(--muted-light, #94a3b8);
+}
+
+/* 禁用状态 */
+input:disabled,
+textarea:disabled,
+select:disabled {
+  background: var(--surface-muted, #f7f9fc);
+  color: var(--muted, #64748b);
+  border-color: var(--border-soft, #e2e8f0);
+  cursor: not-allowed;
+  opacity: 0.75;
+}
+
+/* 搜索框专用容器与内部 input 规范 */
+.search-input-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  flex: 1;
+  min-width: 220px;
+}
+
+.search-input-wrap input {
+  width: 100%;
+  height: 36px;
+  min-height: 36px;
+  padding: 0 12px;
+  border: 1px solid var(--border, #e2e8f0);
+  border-radius: var(--radius-md, 10px);
+  background: var(--surface-solid, #ffffff);
+  color: var(--text, #172033);
+  font-size: var(--font-size-md, 13px);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.search-input-wrap svg {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted, #64748b);
+  pointer-events: none;
+}
+
+.search-input-wrap input.search-input,
+.search-input-wrap.has-icon input {
+  padding-left: 36px !important;
+}
+
+/* 抽屉表单 (Drawer Form) 专门样式 */
+.drawer-form label,
+.detail-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  color: #64748b;
+  margin-bottom: 6px;
+}
+
+/* ==========================================================================
+   Teamwork 视觉体系对齐：抽屉滑块层级与纯白实色背景 (Drawer System)
+   比对 /teamwork/teamwork-front-view 1725-1810 行
+   ========================================================================== */
+
+.drawer-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 900;
+  overflow: hidden;
+  overscroll-behavior: none;
+  touch-action: none;
+  background: rgba(15, 23, 42, 0.28) !important;
+  backdrop-filter: blur(2px);
+  animation: drawer-fade-in 0.2s ease;
+}
+
+.drawer-slide {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: clamp(360px, 45vw, 94vw);
+  height: 100%;
+  overflow: hidden;
+  touch-action: auto;
+  animation: drawer-slide-in 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+}
+
+.drawer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 20px 24px 0;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  border-right: 0;
+  border-radius: var(--radius-shell, 20px) 0 0 var(--radius-shell, 20px);
+  background: #ffffff !important;
+  box-shadow: -14px 0 44px rgba(15, 23, 42, 0.16);
+  backdrop-filter: blur(20px);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.drawer-header {
+  flex-shrink: 0;
+  margin-bottom: 16px;
+}
+
+.drawer-header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.eyebrow {
+  color: var(--primary, #2563eb);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.drawer-close-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: var(--radius-md, 10px);
+  color: var(--muted, #64748b);
+  background: var(--surface-muted, #f7f9fc);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.drawer-close-btn:hover {
+  color: var(--primary, #2563eb);
+  background: var(--primary-soft, #eff6ff);
+}
+
+.drawer-body {
+  flex: 1;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0 2px 20px;
+}
+
+.drawer-footer {
+  position: relative;
+  flex-shrink: 0;
+  margin: 10px -24px 0;
+  padding: 14px 24px 18px;
+  border-top: 1px solid var(--border, #e2e8f0);
+  background: #f8fafc !important;
+  border-bottom-left-radius: var(--radius-shell, 20px);
+  overflow: hidden;
+}
+
+/* 错题卡片流 */
+.question-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 16px;
+}
+
+.question-card {
+  background: var(--surface-solid);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  padding: 18px 20px;
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.question-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+}
+
+.question-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.tag-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+}
+
+.tag-subject {
+  background: #eff6ff;
+  color: #2563eb;
+  border: 1px solid #bfdbfe;
+}
+
+.tag-kp {
+  background: #f1f5f9;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+}
+
+.tag-reason {
+  background: #fef3c7;
+  color: #b45309;
+  border: 1px solid #fde68a;
+}
+
+/* 状态色 */
+.status-pill {
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.status-pending {
+  background: #fef2f2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+}
+
+.status-reworked {
+  background: #fffbeb;
+  color: #d97706;
+  border: 1px solid #fde68a;
+}
+
+.status-mastered {
+  background: #ecfdf5;
+  color: #059669;
+  border: 1px solid #a7f3d0;
+}
+
+.question-stem {
+  font-size: var(--font-size-base);
+  color: var(--text);
+  line-height: var(--line-relaxed);
+  margin-bottom: 14px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+}
+
+.question-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: var(--font-size-xs);
+  color: var(--muted);
+  border-top: 1px solid var(--border-soft);
+  padding-top: 10px;
+  margin-top: auto;
+}
+
+/* 错题详情抽屉 */
+.detail-section {
+  margin-bottom: 20px;
+}
+
+.detail-label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.detail-stem-box {
+  background: var(--surface-muted);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  font-size: var(--font-size-base);
+  line-height: var(--line-relaxed);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.option-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.option-item {
+  padding: 8px 12px;
+  background: var(--surface-solid);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-normal);
+}
+
+.answer-badge-correct {
+  color: var(--success);
+  font-weight: var(--font-weight-bold);
+  background: var(--success-soft);
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(21, 128, 61, 0.2);
+  display: inline-block;
+}
+
+.answer-badge-wrong {
+  color: var(--danger);
+  font-weight: var(--font-weight-bold);
+  background: var(--danger-soft);
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(220, 38, 38, 0.2);
+  display: inline-block;
+}
+
+.analysis-box {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-left: 4px solid var(--primary);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  padding: 14px 16px;
+  font-size: var(--font-size-sm);
+  line-height: var(--line-relaxed);
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: #334155;
+}
+
+.review-history-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  background: var(--surface-muted);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-soft);
+  margin-bottom: 6px;
+  font-size: var(--font-size-sm);
+}
+
+/* 打印纸张模拟 */
+.print-sheet {
+  background: #ffffff;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+  padding: 40px;
+  margin: 0 auto;
+  max-width: 860px;
+  font-family: "Songti SC", SimSun, "Times New Roman", serif;
+  color: #111827;
+}
+
+.print-qitem {
+  border-bottom: 1px dashed #d1d5db;
+  padding-bottom: 24px;
+  margin-bottom: 24px;
+  page-break-inside: avoid;
+}
+
+.print-qitem:last-child {
+  border-bottom: none;
+}
+
+.print-answer-area {
+  border: 1px dashed #e5e7eb;
+  background: #fafafa;
+  height: 90px;
+  border-radius: 6px;
+  margin-top: 12px;
+}
+
+@media print {
+  body {
+    background: #ffffff !important;
+    min-width: unset !important;
+  }
+  .app-shell {
+    display: block !important;
+    height: auto !important;
+    max-height: unset !important;
+  }
+  .side-rail, .topbar, .print-controls {
+    display: none !important;
+  }
+  .workspace {
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+  .print-sheet {
+    box-shadow: none !important;
+    padding: 0 !important;
+    max-width: 100% !important;
+  }
+  .print-qitem {
+    page-break-inside: avoid !important;
+  }
+}

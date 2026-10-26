@@ -1,0 +1,49 @@
+# ==============================================================================
+# Git 忽略配置规范
+# ==============================================================================
+
+# OS Files
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# Environment & Credentials (严禁提交任何敏感环境变量与密钥)
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+*.cert
+
+# WorkBuddy 个人私有工作记忆与学习记录
+.workbuddy/
+
+# Build Artifacts
+/build/
+dist/
+/mistake-book-view/dist/
+
+# Node dependencies
+node_modules/
+/mistake-book-view/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Database & Upload Data (用户错题数据库与原卷截图)
+/data/
+*.db
+*.db-journal
+*.sqlite
+
+# Go binaries & temporary files
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+/mistakebook-api
+/mistakebook-linux-amd64
+/mistake-book-go-api/mistakebook-api
+/mistake-book-go-api/mistakebook-linux-amd64
